@@ -21,6 +21,6 @@ app.get('/app',isAuthenticated,hasRoles(['user','admin']),(req,res)=>{
     res.send("App Welcome")
 })
 
-app.listen(8888,()=>{
+app.listen(process.env.PORT || 8888 ,()=>{
     console.log("El servidor se esta ejecutando en el puerto 8888")
 })

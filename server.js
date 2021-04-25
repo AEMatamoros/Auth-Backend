@@ -5,9 +5,10 @@ var cors = require('cors')
 const app = express()
 require('./controller/db');
 //Conf
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({'extended':true}))
-app.use(cors())
+
 //Midlewares
 const {isAuthenticated,hasRoles}= require('./midlewares/auth')
 //Routes

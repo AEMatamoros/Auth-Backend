@@ -20,14 +20,14 @@ router.post('/reg', (req, res) => {
                 .then(user => {
                     if (user) {
                         res.send("El usuario ya existe")
-                    }
+                    }else{
                     authModel.create({
                         email,
                         password:encryptedPassword,
                         salt: newSalt,
                     }).then(() => {
                         res.send("Usuario Registrado con Exito")
-                    })
+                    })}
                 })
         })
 
@@ -38,6 +38,7 @@ router.post('/reg', (req, res) => {
 
 router.post('/log', (req, res) => {
     const { email, password } = req.body
+    console.log(req.headers)
     authModel.findOne({ email }).exec()
         .then(user => {
             if (!user) {
